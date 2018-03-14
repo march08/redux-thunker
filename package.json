@@ -1,9 +1,9 @@
 {
   "name": "redux-thunker",
   "version": "0.0.1",
-  "description": "Redefined redux-thunk",
+  "description": "Redefined thunk middleware for redux",
   "main": "lib/index.js",
-  "repository": "https://github.com/march08/redux-thunker.git",
+  "files": ["lib", "src", "dist"],
   "author": "Roman Nguyen <march08@outlook.com>",
   "license": "MIT",
   "scripts": {
@@ -13,7 +13,28 @@
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build:umd": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack",
     "build:umd:min":
-      "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack --optimize-minimize"
+      "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack --optimize-minimize",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/march08/redux-thunker.git"
+  },
+  "homepage": "https://github.com/march08/redux-thunker",
+  "keywords": ["redux", "thunk", "thunker", "middleware", "redux-middleware"],
+  "jest": {
+    "collectCoverageFrom": ["src/*"],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.js?(x)",
+      "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
+    ],
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest"
+    },
+    "moduleFileExtensions": ["js"],
+    "collectCoverage": true,
+    "coverageDirectory": "<rootDir>/jest/coverage"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -29,6 +50,8 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "jest": "^22.4.2",
+    "jest-cli": "^22.4.2",
     "prettier": "^1.11.1",
     "prettier-eslint": "^8.8.1",
     "rimraf": "^2.6.2",

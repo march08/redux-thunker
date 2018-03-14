@@ -1,0 +1,9 @@
+{
+  "name": "redux-thunker",
+  "version": "0.0.1",
+  "description": "Redefined redux-thunk",
+  "main": "lib/index.js",
+  "repository": "https://github.com/march08/redux-thunker.git",
+  "author": "Roman Nguyen <march08@outlook.com>",
+  "license": "MIT"
+}

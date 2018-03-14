@@ -1,9 +1,13 @@
 {
   "name": "redux-thunker",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Redefined thunk middleware for redux",
   "main": "lib/index.js",
-  "files": ["lib", "src", "dist"],
+  "files": [
+    "lib",
+    "src",
+    "dist"
+  ],
   "author": "Roman Nguyen <march08@outlook.com>",
   "license": "MIT",
   "scripts": {
@@ -11,21 +15,31 @@
     "clean": "rimraf lib dist es",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build:umd": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack",
-    "build:umd:min":
-      "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack --optimize-minimize",
+    "build:umd:min": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack --optimize-minimize",
     "test": "jest",
     "lint": "eslint --ext .js,.jsx ./src",
     "prepublish": "yarn build"
   },
-  "pre-commit": ["lint", "test"],
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/march08/redux-thunker.git"
   },
   "homepage": "https://github.com/march08/redux-thunker",
-  "keywords": ["redux", "thunk", "thunker", "middleware", "redux-middleware"],
+  "keywords": [
+    "redux",
+    "thunk",
+    "thunker",
+    "middleware",
+    "redux-middleware"
+  ],
   "jest": {
-    "collectCoverageFrom": ["src/*"],
+    "collectCoverageFrom": [
+      "src/*"
+    ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.js?(x)",
       "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
@@ -34,7 +48,9 @@
     "transform": {
       "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest"
     },
-    "moduleFileExtensions": ["js"],
+    "moduleFileExtensions": [
+      "js"
+    ],
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/jest/coverage"
   },

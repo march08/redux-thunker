@@ -1,5 +1,6 @@
 {
   "name": "redux-thunker",
+  "engines": { "node": ">=9.7.1" },
   "version": "0.1.0",
   "description": "Redefined thunk middleware for redux",
   "main": "lib/index.js",

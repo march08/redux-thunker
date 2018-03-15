@@ -70,6 +70,34 @@ describe('Thunker Middleware', () => {
       });
     });
   });
+
+  const nextHandlerCompatibleNotContinuous = thunk.extraArguments({
+    config: {
+      continuous: true,
+    },
+  })({
+    dispatch: dispatchMock,
+    getState: getStateMock,
+  });
+
+  describe('Continuos next', () => {
+    test('run action with dispatch and getState, has them', (done) => {
+      const actionTestResult = {
+        type: 'hello',
+      };
+
+      const actionTest = ({ getState }) => {
+        expect(getState).toEqual(getStateMock);
+        return actionTestResult;
+      };
+
+      const actionHandler = nextHandlerCompatibleNotContinuous((action) => {
+        expect(action).toEqual(actionTestResult);
+        done();
+      });
+      actionHandler(actionTest);
+    });
+  });
 });
 
 describe('Enhancing Arguments', () => {

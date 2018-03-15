@@ -1,5 +1,6 @@
 export const defaultConfig = {
   reduxThunkCompatible: false,
+  continuous: true,
 };
 
 export const enhanceArguments = (extraArguments, injectedArguments) => {
@@ -24,7 +25,7 @@ export const enhanceArguments = (extraArguments, injectedArguments) => {
 const thunkerMiddleware = ({
   extraArguments,
   extraArgumentsEnhanced,
-  config: { reduxThunkCompatible } = defaultConfig,
+  config: { reduxThunkCompatible, continuous } = defaultConfig,
 } = {}) => ({ dispatch, getState }) => next => (action) => {
   if (typeof action === 'function') {
     /**
@@ -46,7 +47,8 @@ const thunkerMiddleware = ({
      *
      * so you don't have to pick disptach or getState when you don't need it
      */
-    return reduxThunkCompatible
+
+    const actionNext = reduxThunkCompatible
       ? action(dispatch, getState, {
         ...extraArguments,
         ...enhancedArguments,
@@ -57,6 +59,10 @@ const thunkerMiddleware = ({
         ...extraArguments,
         ...enhancedArguments,
       });
+
+    return continuous && typeof next === 'function'
+      ? next(actionNext)
+      : actionNext;
   }
 
   return next(action);

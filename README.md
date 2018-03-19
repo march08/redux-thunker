@@ -339,3 +339,7 @@ const getEmployeeData = id => ({ fetch, delay }) => ({
   payload: delay.then(() => fetch(`/employee`))
 });
 ```
+
+### So ... Do you like it?
+
+Is the doc too confusing? Is it not working? Let me know your thoughts and ideas of course! PR's are welcome!

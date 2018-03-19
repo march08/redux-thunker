@@ -244,7 +244,7 @@ const yourAction = arg => ({ dispatch, getState, yourArg }) => {
 };
 ```
 
-If you don't want to do many changes across your application actions, you can set reduxThunkCompatible to true and you will get the same argument order as in redux-thunk.
+If you want to replace redux-thunk and don't want to do many changes across your application actions, you can set reduxThunkCompatible to true and you will get the same argument order as in redux-thunk.
 
 ```javascript
 const yourAction = arg => (dispatch, getState, { yourArg }) => {
@@ -254,7 +254,7 @@ const yourAction = arg => (dispatch, getState, { yourArg }) => {
 
 #### config.continuos
 
-Now, here comes some magic. This option is set to false by default (which is basically the same config as for redux-thunk).
+Now, here comes some magic. This option is set to false by default (which behaves the same way as redux-thunk do).
 
 What does it do? Unlike redux-thunk, it dispatches your action even if you return an (action) object.
 
@@ -267,7 +267,7 @@ const toggleMenu = payload => ({
   payload
 });
 
-const getEmployeeData = id => ({ getState }) => {
+const toggleMenu = id => ({ getState }) => {
   const isMenuOpen = getState().ui.isMenuOpen;
   dispatch(toggleMenu(!isMenuOpen));
 };
@@ -276,7 +276,7 @@ const getEmployeeData = id => ({ getState }) => {
 ##### redux-thunker continuous
 
 ```javascript
-const getEmployeeData = id => ({ getState }) => {
+const toggleMenu = id => ({ getState }) => {
   const isMenuOpen = getState().ui.isMenuOpen;
   return {
     type: "@ui/MENU_IS_OPEN",
@@ -292,19 +292,30 @@ There is a great synergy with [redux-promise-middleware](https://github.com/pbur
 ##### async with redux-thunk
 
 ```javascript
-const setEmployeeData = payload => ({
-  type: "@employee/SET_DATA",
+// for loading UI
+const setEmployeeStart = {
+  type: "@employee/SET_DATA_PENDING",
+  payload
+};
+
+// setting data
+const setEmployeeSuccess = payload => ({
+  type: "@employee/SET_DATA_FULLFILLED",
   payload
 });
+
+// do some error
 const setEmployeeError = payload => ({
-  type: "@employee/SET_ERROR",
+  type: "@employee/SET_DATA_REJECTED",
   payload
 });
 
 const getEmployeeData = id => ({ fetch }) => {
+  dispatch(setEmployeeStart);
+
   fetch(`/employee`)
     .then(response => {
-      dispatch(setEmployeeData(response));
+      dispatch(setEmployeeSuccess(response));
     })
     .catch(err => {
       dispatch(setEmployeeError("Your error message"));

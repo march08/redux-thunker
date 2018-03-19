@@ -361,4 +361,4 @@ const getEmployeeData = id => ({ fetch, delay }) => ({
 
 ## So ... Do you like it?
 
-Is the doc too confusing? Is it not working? Let me know your thoughts and ideas of course! PR's are welcome as well!
+Is the doc too confusing? Is it not working? This is my first real repo so let me know your thoughts and ideas of course! PR's are welcome as well!

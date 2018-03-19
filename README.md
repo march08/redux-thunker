@@ -275,7 +275,7 @@ const toggleMenu = payload => ({
   payload
 });
 
-const toggleMenu = id => ({ getState }) => {
+const toggleMenu = id => (dispatch, getState) => {
   const isMenuOpen = getState().ui.isMenuOpen;
   dispatch(toggleMenu(!isMenuOpen));
 };

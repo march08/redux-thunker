@@ -69,7 +69,11 @@ Our custom fetch has base API ep already set, it also grabs token from the store
 import fetch from "isomorphic-fetch"; // or any other fetch
 
 // custom fetch
-({ getState, dispatch }) => (url, options, ep = "https://your-base.api") => {
+const myInjectedFetch = ({ getState, dispatch }) => (
+  url,
+  options,
+  ep = "https://your-base.api"
+) => {
   const token = getState().user.token; // getting the token from store
 
   // you can do some logic if token doesn't exist of course
@@ -88,6 +92,8 @@ import fetch from "isomorphic-fetch"; // or any other fetch
   // you can do more here, like return res.json() instead
   return fetch(api, mergedOptions);
 };
+
+export default myInjectedFetch;
 ```
 
 As you can see, getState and dispatch is passed into the fetch, which is a [currying function](https://www.sitepoint.com/currying-in-functional-javascript/).

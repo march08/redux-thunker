@@ -15,9 +15,9 @@ Thunk [middleware](https://redux.js.org/advanced/middleware), a compatible/repla
 Installation
 
 ```javascript
-npm install --save redux-thunk
+npm install --save redux-thunker
 // or if you use yarn
-yarn add redux-thunk
+yarn add redux-thunker
 ```
 
 Importing
@@ -198,7 +198,7 @@ This seems like more configuration than necessary, right? See API below.
 As shown above, the initialization required a single option object.
 
 ```javascript
-import createThunkerMiddleware from "redux-thunker";
+import createThunkerMiddleware from 'redux-thunker';
 
 const thunkerOptions = {
   config: {

@@ -1,6 +1,14 @@
 # Redux Thunker
 
-Thunk [middleware](https://redux.js.org/advanced/middleware), a compatible/replacable variation of [redux-thunk v2](https://github.com/gaearon/redux-thunk),
+Thunk [middleware](https://redux.js.org/advanced/middleware), a compatible/replacable variation of [redux-thunk v2](https://github.com/gaearon/redux-thunk).
+
+# Table of Contents
+
+1.  [Difference between this lib and redux-thunk](#what-is-the-difference)
+2.  [Enhanced Extra Arguments](#enhanced-extra-arguments-your-deps-have-access-to-getstate-and-dispatch)
+3.  [Initialization](#initialization)
+4.  [API](#api)
+5.  [Synergy with redux-promise-middleware](#async-with-redux-thunker--redux-promise-middleware)
 
 ## Usage
 
@@ -211,7 +219,7 @@ const thunkerOptions = {
 }
 ```
 
-#### extraArguments
+### extraArguments
 
 This is the same as you would pass it to reduxThunk.extraArguments()
 
@@ -222,7 +230,7 @@ const extraArguments = {
 };
 ```
 
-#### extraArgumentsEnhanced
+### extraArgumentsEnhanced
 
 Your argument(s) can receive getState and dispatch. Make sure your enhanced is a function accepting single object
 
@@ -234,7 +242,7 @@ const extraArgumentsEnhanced = {
 };
 ```
 
-#### config.reduxThunkCompatible
+### config.reduxThunkCompatible
 
 By default, you can grab any injected argument from a single object.
 
@@ -252,13 +260,13 @@ const yourAction = arg => (dispatch, getState, { yourArg }) => {
 };
 ```
 
-#### config.continuos
+### config.continuos
 
 Now, here comes some magic. This option is set to false by default (which behaves the same way as redux-thunk do).
 
 What does it do? Unlike redux-thunk, it dispatches your action even if you return an (action) object.
 
-##### regular redux-thunk
+#### regular redux-thunk
 
 ```javascript
 // redux-thunk
@@ -273,7 +281,7 @@ const toggleMenu = id => ({ getState }) => {
 };
 ```
 
-##### redux-thunker continuous
+#### redux-thunker continuous
 
 ```javascript
 const toggleMenu = id => ({ getState }) => {
@@ -289,7 +297,7 @@ Now... This is not a thunky idea you might think and you are right. So why would
 
 There is a great synergy with [redux-promise-middleware](https://github.com/pburtchaell/redux-promise-middleware) which I love to use.
 
-##### async with redux-thunk
+#### async with redux-thunk
 
 ```javascript
 // for loading UI
@@ -323,7 +331,7 @@ const getEmployeeData = id => ({ fetch }) => {
 };
 ```
 
-##### async with redux-thunker & redux-promise-middleware
+#### async with redux-thunker & redux-promise-middleware
 
 ```javascript
 const getEmployeeData = id => ({ fetch }) => ({
@@ -351,6 +359,6 @@ const getEmployeeData = id => ({ fetch, delay }) => ({
 });
 ```
 
-### So ... Do you like it?
+## So ... Do you like it?
 
-Is the doc too confusing? Is it not working? Let me know your thoughts and ideas of course! PR's are welcome!
+Is the doc too confusing? Is it not working? Let me know your thoughts and ideas of course! PR's are welcome as well!

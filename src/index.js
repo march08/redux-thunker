@@ -1,6 +1,6 @@
 export const defaultConfig = {
   reduxThunkCompatible: false,
-  continuous: true,
+  continuous: false,
 };
 
 export const enhanceArguments = (extraArguments, injectedArguments) => {

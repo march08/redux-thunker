@@ -1,0 +1,13 @@
+{
+  "files.eol": "\n",
+  "files.associations": {
+    "*.jsx": "javascript"
+  },
+ 
+  "editor.tabSize": 2,
+ 
+  "eslint.enable": true,
+  "editor.formatOnSave": true,
+  "javascript.format.enable": false,
+  "prettier.eslintIntegration": true
+ }

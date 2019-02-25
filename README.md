@@ -2,6 +2,52 @@
 
 Thunk [middleware](https://redux.js.org/advanced/middleware), a compatible/replacable variation of [redux-thunk v2](https://github.com/gaearon/redux-thunk).
 
+# TLDR;
+
+## Reduce your code from this:
+```javascript
+// for e.g. loading UI
+const setEmployeeStart = () = {
+  type: "@employee/SET_DATA_PENDING",
+};
+
+// setting data
+const setEmployeeSuccess = payload => ({
+  type: "@employee/SET_DATA_FULLFILLED",
+  payload
+});
+
+// dispatch error
+const setEmployeeError = payload => ({
+  type: "@employee/SET_DATA_REJECTED",
+  error: true,
+  payload
+});
+
+const getEmployeeData = id => ({ fetch }) => {
+  dispatch(setEmployeeStart());
+
+  fetch(`/employee`)
+    .then(response => {
+      dispatch(setEmployeeSuccess(response));
+    })
+    .catch(error => {
+      dispatch(setEmployeeError(error));
+    });
+};
+```
+
+## --> to this:
+
+
+```javascript
+const getEmployeeData = id => ({ fetch }) => ({
+  type: "@employee/SET_DATA",
+  payload: fetch(`/employee`)
+});
+```
+
+
 # Table of Contents
 
 1.  [Difference between this lib and redux-thunk](#what-is-the-difference)
@@ -307,9 +353,8 @@ There is a great synergy with [redux-promise-middleware](https://github.com/pbur
 
 ```javascript
 // for loading UI
-const setEmployeeStart = {
+const setEmployeeStart = () = {
   type: "@employee/SET_DATA_PENDING",
-  payload
 };
 
 // setting data
@@ -325,7 +370,7 @@ const setEmployeeError = payload => ({
 });
 
 const getEmployeeData = id => ({ fetch }) => {
-  dispatch(setEmployeeStart);
+  dispatch(setEmployeeStart());
 
   fetch(`/employee`)
     .then(response => {

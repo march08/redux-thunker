@@ -55,6 +55,7 @@
     "coverageDirectory": "<rootDir>/jest/coverage"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
@@ -74,8 +75,5 @@
     "rimraf": "^2.6.3",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3"
-  },
-  "dependencies": {
-    "@babel/cli": "^7.2.3"
   }
 }

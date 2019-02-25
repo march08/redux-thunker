@@ -1,5 +1,5 @@
-import webpack from 'webpack';
-import path from 'path';
+const webpack = require('webpack');
+const path = require('path');
 
 const { NODE_ENV } = process.env;
 
@@ -11,7 +11,7 @@ const plugins = [
 
 const filename = `redux-thunker${NODE_ENV === 'production' ? '.min' : ''}.js`;
 
-export default {
+module.exports = {
   module: {
     rules: [
       { test: /\.js$/, loaders: ['babel-loader'], exclude: /node_modules/ },
